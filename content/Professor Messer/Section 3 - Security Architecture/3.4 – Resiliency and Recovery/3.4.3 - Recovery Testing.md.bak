@@ -1,0 +1,117 @@
+# Recovery Testing
+
+## 🎥 Source
+- **Video Title:** Recovery Testing
+- **Professor:** Professor Messer
+- **URL:** https://www.youtube.com/watch?v=IhT7Odu4xHc
+- **Date Watched:** 2023-11-20 (or current date)
+
+---
+
+## 📝 Notes
+
+### 1. Recovery Testing (0:02)
+- **Purpose:** To test an organization's [[Disaster Recovery Plan (DRP)]] *before* an actual disaster or event occurs.
+    - Ensures the plan can be successfully executed.
+- **Frequency:** Typically performed on a regular, scheduled basis (e.g., annual, semi-annual).
+    - Helps ensure everyone understands the processes and procedures.
+- **Key Considerations:**
+    - **Well-defined rules of engagement:** Essential to prevent unintended consequences.
+    - **Do NOT touch production systems:** Testing should happen in an isolated or simulated environment to avoid disrupting live operations.
+    - **Very specific scenario:** Focus on a particular recovery event to test specific parts of the plan.
+    - **Limited time:** Simulate the time constraints of an actual disaster to test efficiency.
+- **Evaluation:** After the test, evaluate the response, document findings, discuss improvements, and update the [[Disaster Recovery Plan (DRP)]] for future tests.
+
+### 2. Tabletop Exercises (0:48)
+- **Problem with full-scale drills:**
+    - Can be extremely costly (e.g., moving personnel to a recovery site, building out infrastructure).
+    - Time-consuming.
+- **Solution:** A **Tabletop Exercise** is a cost-effective and time-efficient way to test a [[Disaster Recovery Plan (DRP)]].
+- **Nature:** Participants verbally walk through the steps of a simulated disaster scenario.
+    - No physical action is taken; it's a discussion-based exercise.
+    - "You don't physically have to go through a disaster or drill."
+- **Benefits:**
+    - Many logistics can be determined through analysis and discussion.
+    - Allows key players to work together and understand each other's roles and dependencies.
+    - Helps identify shortcomings or overlooked steps in the existing [[Disaster Recovery Plan (DRP)]] without the overhead of a full drill.
+
+### 3. Failover (1:46)
+- **Core Principle:** "A failure is often inevitable – it's 'when,' not 'if'."
+- **Goal:** To keep systems and services running without interruption during a failure.
+- **Mechanism:** Leverages **redundant infrastructure**.
+    - **Examples:** Multiple routers, firewalls, switches, servers, internet connections from different providers.
+- **Process:** If a primary component fails, the system automatically switches over to a secondary, operational unit.
+    - Users should ideally be unaware of the switch-over.
+- **Automatic Failover:** Many modern infrastructure devices and services have built-in failover functionality, often configured through software or protocols.
+- **Diagram Example (2:38):**
+    - Illustrates a redundant network path:
+        - Multiple internet connections (green/red lines).
+        - Multiple routers.
+        - Multiple firewalls.
+        - Multiple switches.
+        - Multiple links from servers.
+    - If a primary path (e.g., top router/firewall/switch) fails, traffic automatically redirects to the secondary path (bottom router/firewall/switch).
+- **Extension:** Can be combined with [[Load Balancing]] for even greater resilience and performance.
+
+### 4. Simulation (3:20)
+- **Purpose:** To test security controls and user awareness by simulating common cyber threats.
+- **Types of Simulated Events:**
+    - [[Phishing Attack]] simulations.
+    - Password request/reset simulations.
+    - Data breach simulations (e.g., attempting to remove sensitive data).
+- **Phishing Simulation Example:**
+    - **Create:** Design a realistic phishing email tailored to the user community.
+    - **Send:** Distribute the email to actual users within the organization.
+    - **Observe:** Monitor who "bites" (clicks the malicious link or provides credentials).
+- **Testing Aspects:**
+    - **Internal Security:** Did the phishing email get past the organization's email filters and security systems?
+    - **Users:** Identify which users clicked the link. This highlights areas where [[Security Awareness Training]] needs to be reinforced.
+    - **Response:** How quickly are the clicks identified? How does the incident response team react?
+
+### 5. Parallel Processing (4:24)
+- **Definition:** Splitting a single process or workload across multiple (parallel) Central Processing Units (CPUs) or processing units.
+- **Implementations:**
+    - A single computer with multiple CPU cores or multiple physical CPUs.
+    - Multiple computers (e.g., in a cluster or distributed system).
+- **Benefits for Recovery and Performance:**
+    - **Improved Performance:** Complex transactions can be split and processed simultaneously across multiple processors, leading to faster completion times.
+    - **Improved Recovery (Resiliency):**
+        - **Quickly identify faulty systems:** If one processor or computer fails, it can be quickly detected.
+        - **Fault tolerance:** The faulty device can be taken out of the list of available processors, and the remaining processors can continue to handle the workload.
+        - **Continuous operation:** The system can continue operating, albeit potentially at a reduced capacity, without a complete outage.
+
+---
+
+## 🧠 Takeaways for Exam Prep
+
+1.  **Recovery Testing (DRP Drills):**
+    *   **Core Idea:** Practice makes perfect. Don't wait for a real disaster to find out your DRP doesn't work.
+    *   **Frequency:** Regular, scheduled sessions are crucial for maintaining readiness and staff familiarity.
+    *   **Safety First:** *Never* test on live production systems. Use dedicated environments or strict protocols.
+    *   **Continuous Improvement:** Always evaluate, document, and refine the plan after each test.
+
+2.  **Tabletop Exercises vs. Full Drills:**
+    *   **Why Tabletop?** Cost-effective and less time-consuming than full-scale drills.
+    *   **What is it?** A *discussion-based* walkthrough of a disaster scenario with key personnel. No physical actions.
+    *   **Benefit:** Helps identify logical flaws, communication gaps, and logistical issues in the DRP early on. It's an analytical test.
+
+3.  **Failover:**
+    *   **Inherent Risk:** Assume failure *will* happen ("when," not "if").
+    *   **Solution:** [[Redundancy]] at all critical infrastructure layers (networks, servers, firewalls, etc.).
+    *   **Goal:** Seamless transition to backup systems, ideally unnoticed by users.
+    *   **Automation:** Many modern systems are designed for automatic failover to minimize downtime.
+
+4.  **Simulation (Security Focus):**
+    *   **Purpose:** Test security defenses and human behavior against *simulated attacks*.
+    *   **Key Examples:** Phishing campaigns, password reset scams, data exfiltration attempts.
+    *   **Dual Testing:**
+        *   **Technical Controls:** Do our filters/systems detect the simulated threat?
+        *   **Human Factor:** Do users fall for the simulated attack? (Highlights training needs).
+
+5.  **Parallel Processing:**
+    *   **Definition:** Distributing a single task across multiple processing units.
+    *   **Benefits (Performance & Recovery):**
+        *   **Performance:** Faster processing of complex tasks by leveraging multiple CPUs simultaneously.
+        *   **Recovery/Resilience:** If one processing unit fails, the workload can be redistributed among the remaining units, allowing the system to continue operating (albeit potentially degraded). This is a form of *fault tolerance* for processing.
+
+---

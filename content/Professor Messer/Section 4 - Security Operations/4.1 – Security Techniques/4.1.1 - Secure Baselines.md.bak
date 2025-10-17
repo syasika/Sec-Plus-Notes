@@ -1,0 +1,86 @@
+# Secure Baselines
+
+**Video Link:** [https://www.youtube.com/watch?v=BWPJD9Eb9iE](https://www.youtube.com/watch?v=BWPJD9Eb9iE)
+**Date Watched:** 2023-10-27
+**Source:** Professor Messer (CompTIA Security+ SY0-601 Study Notes)
+**Tags:** #security #compliance #baselines #system_hardening #ProfessorMesser
+
+---
+
+### 1. Introduction to Secure Baselines (0:00)
+
+*   **Definition:** A well-defined set of security configurations and settings that an application environment (including the application, operating system, and network devices) must adhere to.
+*   **Purpose:** Ensures consistent security posture across all instances of an application.
+*   **Examples of components included:**
+    *   Firewall settings
+    *   Patch levels (OS and application)
+    *   Operating system file versions
+    *   Application-specific configuration settings
+*   **Dynamic Nature:** Requires constant updates due to evolving threats and software changes.
+
+### 2. Integrity Measurements for Secure Baselines (0:43)
+
+*   **Continuous Monitoring:** Baselines must be constantly checked to ensure they remain in place and are effectively protecting the application instance.
+*   **Process:**
+    1.  Perform integrity checks frequently.
+    2.  Compare current configurations against the well-documented secure baselines.
+    3.  **Correction:** Any deviation or failure to meet the baseline requirements necessitates immediate correction.
+
+### 3. Establishing Baselines (1:02)
+
+*   **Foundational Security Policies:** The first step is to create a series of these policies.
+*   **Leveraging Manufacturer Resources:** You don't have to start from scratch! Many manufacturers provide foundational security baselines:
+    *   **Application developer:** Provides baselines for their specific application (e.g., file permissions, internal config settings).
+    *   **Operating system manufacturer:** Provides baselines for their OS (e.g., Microsoft offers extensive security baselines for Windows and Windows Server, including over 3,000 Group Policy settings in Windows 10, though only a subset are security-related).
+    *   **Appliance manufacturer:** Provides baselines for purpose-built hardware appliances.
+*   **Tools for Establishment:** Microsoft's **Security Compliance Toolkit (SCT)** is an example of a tool that helps manage and deploy Windows security baselines.
+
+### 4. Deploying Baselines (2:19)
+
+*   **Putting Baselines into Action:** Once established, these detailed security baselines need to be deployed to all relevant components.
+*   **Centralized Management:** Often managed through a centrally administered console (e.g., Microsoft SCT).
+*   **Multiple Deployment Mechanisms:** Different parts of the baseline may require different deployment methods:
+    *   **Active Directory Group Policy (GPO):** For Windows domain-joined systems.
+    *   **Mobile Device Management (MDM):** For mobile devices.
+    *   Other configuration management tools.
+*   **Automation is Key:** For large environments (hundreds or thousands of devices), automated deployment processes are essential for efficiency and consistency.
+
+### 5. Maintaining Baselines (3:05)
+
+*   **Best Practices vs. Ongoing Updates:**
+    *   Many baseline settings are based on best practices and rarely change.
+    *   However, many others require ongoing updates due to:
+        *   **New Vulnerabilities:** Discovery of new exploits affecting applications or OS.
+        *   **Application Updates:** Deployment of new versions of applications.
+        *   **Operating System Installations/Upgrades:** New OS versions or fresh installations.
+*   **Conflict Resolution:** Different manufacturers' baselines might contradict each other. This requires careful evaluation to determine the best baseline for a specific application instance.
+*   **Testing and Measuring:**
+    *   **Pre-deployment Testing:** Crucial to test baselines before full deployment to avoid conflicts and ensure functionality.
+    *   **Post-deployment Auditing:** Regularly audit deployed baselines to confirm they remain in effect and are providing the intended security.
+*   **Complexity:** Enterprise environments are complex, making baseline maintenance an ongoing and critical task.
+
+---
+
+## Exam Takeaways
+
+1.  **Core Definition & Purpose:** Understand that a **secure baseline** is a defined, consistent, and documented set of security configurations for an application environment. Its primary purpose is to ensure a consistent and strong security posture across all deployed instances.
+2.  **Key Components:** Remember that baselines cover more than just the application itself; they include firewall settings, patch levels, OS file versions, and other underlying infrastructure components.
+3.  **Lifecycle:** Secure baselines follow a distinct lifecycle: **Establishment** -> **Deployment** -> **Maintenance**.
+4.  **Establishment Sources:** You don't build baselines from scratch. Key sources include:
+    *   Application developers
+    *   Operating system manufacturers (e.g., Microsoft provides extensive guidance and tools like the SCT).
+    *   Appliance manufacturers.
+5.  **Deployment Mechanisms:** Know common methods for deploying baselines, especially in enterprise environments:
+    *   Centralized consoles
+    *   Active Directory Group Policy (GPO)
+    *   Mobile Device Management (MDM)
+    *   **Automation** is critical for large-scale deployments.
+6.  **Maintenance Triggers:** Be aware of scenarios that necessitate updating baselines:
+    *   Discovery of new vulnerabilities.
+    *   Updates to applications.
+    *   New OS installations or upgrades.
+7.  **Challenges in Maintenance:**
+    *   **Conflicts:** Different vendor baselines might conflict; careful evaluation is needed.
+    *   **Complexity:** Enterprise environments are inherently complex, making maintenance challenging.
+8.  **Verification:** **Integrity measurements**, frequent checks, and regular auditing are essential to ensure baselines remain effective and haven't drifted. Immediate correction is required upon failure.
+9.  **Testing:** Testing baselines *before* deployment is crucial to prevent conflicts and ensure operational continuity.

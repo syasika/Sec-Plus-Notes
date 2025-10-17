@@ -1,0 +1,152 @@
+# Resiliency Concepts
+
+## Introduction to Resiliency (0:00)
+
+*   **Focus:** Maintaining uptime and availability of systems in Information Security.
+*   **Resiliency:** The ability of a system to recover from failures and continue functioning.
+*   **High Availability (HA):** A key method to provide resiliency.
+
+## High Availability (HA) (0:02)
+
+*   **Distinction from simple Redundancy:**
+    *   **Redundancy** means having backup components, but they might need manual intervention (e.g., powering on, configuration) to become active, leading to downtime.
+    *   **High Availability (HA)** implies systems are **always on, always available**.
+*   **Characteristics of HA:**
+    *   **Always on, always available:** If one system fails, another immediately takes over.
+    *   **Multiple components working together:** Systems are designed to operate in parallel.
+    *   **Active/Active configurations:** Can provide scalability advantages by distributing load across all active components.
+*   **Costs:** Higher availability almost always means higher costs.
+    *   Requires additional components (duplicate hardware).
+    *   May need upgraded power infrastructure.
+    *   Often involves high-quality server components.
+    *   More complex configurations and maintenance.
+
+## Server Clustering (1:22)
+
+*   **Concept:** Combines two or more servers to appear and operate as a single, large server.
+*   **User Perspective:** Users only see one device (the cluster), not individual servers.
+*   **Benefits:**
+    *   **Increased Capacity and Availability:** Easily add or remove servers to the cluster in real-time to increase/decrease capacity.
+    *   **Automatic Failover:** If a server in the cluster fails, others pick up the load.
+*   **Configuration:**
+    *   Usually configured within the operating system.
+    *   All devices in the cluster commonly use the same OS for interoperability.
+*   **Shared Storage (2:11):**
+    *   Servers in a cluster typically don't write to local drives.
+    *   They use a **separate, shared storage directory** to ensure all servers have up-to-date, synchronized data.
+
+## Load Balancing (2:29)
+
+*   **Concept:** Distributes incoming network traffic (load) across multiple servers.
+*   **Key Difference from Clustering:** The servers in a load-balanced setup are often **unaware of each other**.
+*   **Mechanism:** A central **load balancer** manages which devices receive which requests.
+*   **Flexibility:**
+    *   Servers can be running different operating systems (e.g., Windows, Linux).
+    *   The load balancer adds or removes devices as needed.
+        *   Add a server to increase capacity.
+        *   Automatically remove any servers not responding (failure detection).
+*   **Scalability & Resiliency:** Provides both by distributing demand and rerouting traffic around failed nodes.
+
+## Site Resiliency (3:41)
+
+*   **Concept:** Having a prepared recovery site to take over operations in case of a disaster at the primary location.
+*   **Process:**
+    *   **Recovery site is prepped:** Infrastructure is ready.
+    *   **Data is synchronized:** Critical data is replicated to the recovery site.
+    *   **Disaster is called:** An event (e.g., natural disaster, major outage) triggers the need for failover.
+    *   **Business processes failover:** Operations switch to the alternate processing site.
+    *   **Problem is addressed:** The primary site is repaired (can take hours, weeks, or longer).
+    *   **Revert back to primary location:** Operations eventually switch back.
+*   **Documentation:** The entire failover and failback process must be thoroughly documented and tested.
+
+### Hot Site (4:27)
+
+*   **Description:** An exact replica of the primary data center.
+*   **Characteristics:**
+    *   **Duplicate everything:** Hardware, software, and data are mirrored.
+    *   **Stocked with hardware:** All necessary equipment is on-site.
+    *   **Constantly updated:** Applications, software, and data are continuously replicated (automated replication).
+    *   **High Cost:** Requires significant investment in duplicate infrastructure and ongoing maintenance.
+*   **Recovery Time:** Minimal downtime; "flip a switch" and everything moves.
+
+### Cold Site (4:59)
+
+*   **Description:** An empty building with basic infrastructure (power, lighting, HVAC).
+*   **Characteristics:**
+    *   **No hardware:** No servers, network equipment, etc.
+    *   **No data:** Data must be brought from backups.
+    *   **No people:** Staff must be transported to the site.
+    *   **Lowest Cost:** Least expensive option to maintain.
+*   **Recovery Time:** Longest recovery time (weeks to months) due to the need to acquire, install, and configure hardware, restore data, and staff the site.
+
+### Warm Site (5:23)
+
+*   **Description:** Somewhere between a cold and a hot site.
+*   **Characteristics:**
+    *   **Enough to get going:** Has a big room with rack space, and some basic hardware (e.g., network gear, some servers).
+    *   **Partial data availability:** Some data might be available, but often needs to be restored.
+    *   **Bring hardware and data:** You need to bring additional hardware, data, and staff.
+    *   **Mid-range Cost:** More expensive than a cold site, less than a hot site.
+*   **Recovery Time:** Moderate recovery time (days to weeks).
+
+## Geographic Dispersion (5:41)
+
+*   **Concept:** Recovery sites should be physically distant from the organization's primary location.
+*   **Purpose:** To mitigate the impact of large-area disruptions.
+    *   Examples: Hurricane, tornado, floods, earthquakes, regional power outages.
+    *   If primary and recovery sites are too close, a single event could affect both.
+*   **Logistical Challenges:**
+    *   **Transporting equipment:** Moving hardware to the recovery site.
+    *   **Getting employees on-site:** Staffing the remote location.
+    *   **Getting back to the main office:** Reverting operations once the primary site is restored.
+
+## Platform Diversity (6:44)
+
+*   **Concept:** Using many different platforms (operating systems, applications, clients) to reduce the risk of a single point of failure due to vulnerabilities.
+*   **Security Issues:** Every operating system contains potential security issues (vulnerabilities).
+    *   Some are known and patched, others are undiscovered (zero-days).
+    *   Many vulnerabilities are specific to a single OS (e.g., Windows vulnerabilities don't typically affect Linux or macOS, and vice versa).
+*   **Benefit:** Spreads the risk around.
+    *   An exploit targeting one OS (e.g., Windows) would not compromise systems running a different OS (e.g., Linux or macOS).
+    *   Limits exposure to one single vulnerability.
+
+## Multi-Cloud Systems (7:38)
+
+*   **Concept:** Utilizing multiple cloud providers (e.g., Amazon Web Services, Microsoft Azure, Google Cloud) for services and data.
+*   **Rationale:**
+    *   **Cloud outages can happen:** Even major cloud providers experience downtime.
+    *   **Geographically dispersed and cloud service dispersed data:** Data and applications are spread across different providers and often different regions within those providers.
+*   **Benefits:**
+    *   **Increased Availability:** If one cloud provider experiences an outage, services can failover to another provider.
+    *   **Enhanced Security:** A breach with one provider would not affect services or data hosted with other providers.
+    *   **Comprehensive Contingency Planning:** Planning for every contingency, including cloud-specific disruptions.
+
+## Continuity of Operations Planning (COOP) (8:29)
+
+*   **Concept:** A plan for how an organization will continue to operate during and after a disruption when normal technological processes are unavailable.
+*   **Problem:** We rely heavily on computer systems; technology is pervasive. Disasters can cause a disruption to the norm.
+*   **Solution:** There needs to be an alternative, often **non-technical**, way to perform critical business functions.
+    *   **Manual transactions:** Recording sales or other activities on paper.
+    *   **Paper receipts:** Providing physical proof of transactions.
+    *   **Phone calls for transaction approvals:** Manually verifying credit cards or other approvals.
+*   **Importance:** These alternative processes **must be documented and tested** *before* a problem occurs.
+    *   Ensures that employees know exactly what to do to keep services running during a technological outage.
+
+---
+
+## Takeaways for an Exam
+
+1.  **Distinguish between Redundancy and High Availability (HA):** Redundancy is having backups; HA means continuous operation with automatic failover. HA is "always on, always available."
+2.  **Understand the Cost of HA:** Higher availability directly correlates with higher costs due to duplicate hardware, robust infrastructure, and complex management.
+3.  **Differentiate Server Clustering and Load Balancing:**
+    *   **Server Clustering:** Multiple servers acting as *one logical unit*, sharing state (often via shared storage), and *aware of each other*. Good for tightly coupled applications.
+    *   **Load Balancing:** Distributes traffic across *multiple independent servers*, which are generally *unaware of each other*. Good for stateless or loosely coupled web services.
+4.  **Know the Three Types of Recovery Sites (and their trade-offs):**
+    *   **Hot Site:** Exact replica, fully operational, minimal downtime, **highest cost**.
+    *   **Warm Site:** Partially equipped, some data, moderate downtime, **medium cost**.
+    *   **Cold Site:** Empty shell, basic infrastructure only, longest downtime, **lowest cost**.
+    *   Focus on the presence/absence of hardware, data, and personnel, and the resulting recovery time and cost.
+5.  **Understand Geographic Dispersion:** Recovery sites must be physically separate to protect against regional disasters (e.g., hurricanes, floods). Be aware of the logistical challenges this introduces (transport, personnel).
+6.  **Explain Platform Diversity's Role in Security:** Using different operating systems and platforms (e.g., Linux for servers, Windows for clients) reduces the risk of a single vulnerability compromising the entire infrastructure. It's about "spreading the risk."
+7.  **Grasp Multi-Cloud Strategy:** Using multiple cloud providers enhances resiliency against cloud-specific outages or breaches. Data and services are dispersed both geographically *and* across different cloud vendors.
+8.  **Define and Justify Continuity of Operations Planning (COOP):** COOP is essential for maintaining critical business functions when technology completely fails. It focuses on *non-technical, manual alternatives*. Emphasize the need for prior documentation and testing of these manual procedures.

@@ -1,0 +1,156 @@
+# Application Security
+
+**Source:** Professor Messer - Application Security (https://www.youtube.com/watch?v=fFvXy3WkLpA)
+**Date:** 2023-10-27
+**Topic:** [[CompTIA Security+ SY0-601]] - Application Security Concepts
+
+---
+
+## 1. Secure Coding Concepts (0:00 - 0:50)
+
+-   **Challenge of Application Development:** Creating applications from scratch is complex.
+-   **Balance of Time & Quality:** Developers often prioritize speed over security.
+-   **Consequence:** Programming with security in mind is often secondary, leading to vulnerabilities.
+-   **Importance of Testing:**
+    -   The [[Quality Assurance (QA)]] process is critical.
+    -   QA teams test both functionality and security.
+    -   Many vulnerabilities (e.g., buffer overflows, SQL injection) are found here.
+-   **Inescapable Reality:** Vulnerabilities *will* eventually be found – either by internal QA/researchers or by attackers.
+    -   Attackers will then exploit these vulnerabilities.
+
+---
+
+## 2. Input Validation (0:50 - 2:11)
+
+-   **Core Concept:** Ensuring that any data entered into an application is clean, correct, and safe for processing.
+-   **What is Expected Input?**
+    -   Developers must define what kind of input is expected for every field.
+    -   **Validate Actual vs. Expected:** Check if the received input matches the defined expectations.
+-   **Documentation is Key:**
+    -   Document all input methods: forms, fields, data types.
+    -   This helps ensure comprehensive validation coverage.
+-   **Check and Correct All Input (Normalization):**
+    -   Transform input into a standardized format.
+    -   Example: A zip code field should only accept numeric characters and a specific length (e.g., 5 digits or 5+4 in the US, or alphanumeric in other countries).
+    -   Fix any data with improper input or prompt the user for correction.
+-   **The Fuzzers Will Find What You Miss:**
+    -   **Fuzzing:** An automated process of providing varied, often random, unexpected, or malformed inputs to an application to discover vulnerabilities or crashes.
+    -   If an application behaves unexpectedly during fuzzing, input validation needs adjustment.
+    -   **Goal:** Don't give attackers an opening by failing to validate input properly.
+
+---
+
+## 3. Secure Cookies (2:11 - 3:09)
+
+-   **What are Cookies?**
+    -   Small pieces of information stored on your computer by the browser.
+    -   Used for:
+        -   Tracking user activity.
+        -   Personalization of web content.
+        -   Session management (e.g., keeping you logged in).
+-   **Security Implications:**
+    -   Cookies are **not executable**; they are data files.
+    -   Generally, they are **not a direct security risk** in terms of malware.
+    -   However, the **information *within* them can be valuable** if someone gains unauthorized access to them.
+-   **Secure Cookies:**
+    -   Have a "Secure" attribute set.
+    -   This attribute instructs the browser to **only send the cookie over HTTPS** (an encrypted connection).
+    -   This prevents eavesdropping on the cookie's contents during transit.
+-   **Important Caveat:**
+    -   There is **no special security built around cookies** themselves (beyond the secure attribute for transport).
+    -   Information stored in a cookie can be easily read from the browser (e.g., via developer tools).
+    -   **Sensitive information should NOT be saved in a cookie.** This storage mechanism is not designed for confidentiality of sensitive data.
+
+---
+
+## 4. Static Code Analyzers (3:09 - 4:57)
+
+-   **Static Application Security Testing (SAST):**
+    -   Analyzes application source code, bytecode, or binary code for security flaws **without actually executing the application.**
+    -   Helps to identify security flaws early in the development lifecycle.
+-   **Benefits:**
+    -   Can easily find many common security vulnerabilities:
+        -   [[Buffer overflows]]
+        -   [[Database injections]] (e.g., SQL injection)
+        -   Other code-level weaknesses.
+-   **Limitations:**
+    -   **Not everything can be identified through static analysis.**
+        -   Authentication security logic (e.g., weak password policies, logical flaws).
+        -   Insecure cryptography *implementation* (not just the presence of crypto, but *how* it's used).
+        -   Runtime issues that depend on external factors or user interaction.
+    -   **Don't rely on automation for everything.** Manual review and dynamic testing are still necessary.
+-   **Verification:**
+    -   Developers still have to **verify each finding**.
+    -   **False positives** are an issue with static analyzers (reporting a vulnerability that isn't actually one).
+-   **Example Output (4:12):**
+    -   Shows warnings for insecure functions like `gets()` (prone to buffer overflows) and `strcat()` (string concatenation without bounds checking).
+    -   Often recommends safer alternatives (e.g., `fgets()` instead of `gets()`).
+
+---
+
+## 5. Code Signing (4:57 - 6:14)
+
+-   **Purpose:** To verify the integrity and authenticity of an application executable or script.
+-   **Security Questions Answered:**
+    1.  **Integrity:** Has the application been modified in any way since it left the developer?
+    2.  **Authenticity:** Can you confirm that the application was written by a specific, trusted developer?
+-   **Mechanism:**
+    -   The application code is **digitally signed by the developer** using asymmetric encryption.
+    -   A **trusted Certificate Authority (CA)** signs the developer's public key, vouching for their identity.
+    -   The developer then signs the code with their **private key**.
+-   **Process:**
+    -   When a user installs the application, their operating system checks the digital signature.
+    -   It verifies that the code hasn't been tampered with and that it originates from the claimed developer.
+    -   If the signature is invalid or altered, the OS will display a warning.
+-   **Internal Applications:** For apps used only within an organization, you can use your own internal CA to sign code.
+
+---
+
+## 6. Sandboxing (6:14 - 7:29)
+
+-   **Core Concept:** A security mechanism for running programs in an isolated environment.
+-   **Principle:** Applications cannot access unrelated resources. They "play in their own sandbox."
+-   **Benefit:** Limits the damage an application can do if it contains malicious code or is exploited. Prevents lateral movement or access to sensitive system resources.
+-   **Common Use Cases:**
+    -   **During Development:** Developers create code in digital sandboxes, isolated from production networks, to prevent accidental damage.
+    -   **Production Environments:** A useful technique for running untrusted or potentially vulnerable applications.
+-   **Implementations/Deployments:**
+    -   **Virtual machines (VMs):** Each VM is a sandbox, isolated from the host and other VMs.
+    -   **Mobile devices:** Apps run in sandboxes with limited permissions (e.g., a browser app can't access your camera roll without explicit permission).
+    -   **Browser iframes (Inline Frames):** Web content within an iframe is often sandboxed, limiting its interaction with the parent page.
+    -   **Windows User Account Control (UAC):** Prompts users for elevated privileges, effectively sandboxing applications that request system-level access.
+
+---
+
+## 7. Application Security Monitoring (7:29 - 8:16)
+
+-   **Purpose:** To gain real-time information and insights into application usage and potential security threats.
+-   **Key Activities:**
+    -   **Real-time Information:**
+        -   Monitor application usage patterns.
+        -   Track access demographics (who, when, where).
+    -   **View Blocked Attacks:**
+        -   Observe attempts at [[SQL injection]], [[Cross-Site Scripting (XSS)]], and other attacks that the application successfully blocked.
+        -   Identify attempts to exploit previously patched vulnerabilities.
+    -   **Audit the Logs:**
+        -   Developers use tools to analyze extensive application logs.
+        -   Helps find information gathering attempts and hidden attacks that might not trigger real-time alerts.
+    -   **Anomaly Detection:**
+        -   Identify unusual or suspicious activities.
+        -   Examples: Unusual file transfers, sudden spikes in client access from unexpected locations or times.
+        -   This helps uncover unknown vulnerabilities or ongoing attacks.
+
+---
+
+## Exam Takeaways
+
+1.  **Secure Coding is Foundational:** Recognize that security must be integrated from the start of development, not as an afterthought. Testing (QA) is crucial, but vulnerabilities are inevitable without secure coding practices.
+2.  **Input Validation is Paramount:** Understand that validating all application input (forms, fields, types) against expected formats is critical to prevent many common attacks like SQL injection and buffer overflows. Be familiar with "normalization" and "fuzzing" as techniques.
+3.  **Cookies are Data, Not Code:** Know that cookies are used for tracking, personalization, and session management. While not executable (and thus not malware), their contents can be sensitive. The "Secure" attribute ensures transfer over HTTPS, but cookies are *not* designed for secure storage of highly sensitive data.
+4.  **SAST for Early Flaw Detection:** Be aware of Static Application Security Testing (SAST) as a method to analyze code *without running it* to find vulnerabilities like buffer overflows and database injections. Understand its limitations (e.g., cannot detect all authentication or crypto implementation flaws) and the issue of false positives.
+5.  **Code Signing for Trust and Integrity:** Grasp that code signing uses asymmetric encryption and CAs to verify two key aspects:
+    *   **Integrity:** The code hasn't been altered since leaving the developer.
+    *   **Authenticity:** The code genuinely originates from the stated developer.
+    This helps prevent malware distribution.
+6.  **Sandboxing for Isolation:** Understand sandboxing as a technique to isolate applications, limiting their access to only necessary resources. This minimizes the impact of a compromised application. Be able to identify examples like VMs, mobile app permissions, browser iframes, and Windows UAC.
+7.  **Monitoring is Continuous Vigilance:** Recognize that application security monitoring provides real-time insights into application usage and security events. This includes viewing blocked attacks, auditing logs for hidden threats, and using anomaly detection to spot unusual activity.

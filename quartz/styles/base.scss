@@ -152,7 +152,7 @@ a {
 }
 
 .page {
-  max-width: calc(#{map.get($breakpoints, desktop)} + 300px);
+  max-width: calc(#{map.get($breakpoints, desktop)} + 500px);
   margin: 0 auto;
   & article {
     & > h1 {
@@ -181,6 +181,7 @@ a {
   }
 
   & > #quartz-body {
+
     display: grid;
     grid-template-columns: #{map.get($desktopGrid, templateColumns)};
     grid-template-rows: #{map.get($desktopGrid, templateRows)};
@@ -215,9 +216,9 @@ a {
       top: 0;
       box-sizing: border-box;
       padding: $topSpacing 2rem 2rem 2rem;
-      display: flex;
+      display: flex;      
       height: 100vh;
-      position: sticky;
+      position: sticky;      
     }
 
     & .sidebar.left {

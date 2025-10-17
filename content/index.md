@@ -1,6 +1,4 @@
 ---
-title: Welcome to Quartz
+title: Sec+ Notes Index
 ---
-
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+[[Professor Messer/Table of Contents|Table of Contents]]

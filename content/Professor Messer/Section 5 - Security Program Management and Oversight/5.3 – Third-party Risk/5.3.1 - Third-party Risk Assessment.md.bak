@@ -1,0 +1,149 @@
+# Third-party Risk Assessment - Professor Messer Notes
+
+## 1. Third-party Risk
+*   **Definition:** Risk introduced when an organization works with external vendors for various services or raw materials.
+*   **Examples of Vendors (0:04):**
+    *   Payroll services
+    *   Customer relationship management (CRM)
+    *   Email marketing
+    *   Travel management
+    *   Raw material suppliers
+*   **Data Sharing (0:19):**
+    *   Important company data is often shared with third parties.
+    *   This may be required for cloud-based services.
+    *   Example: Payroll company receives sensitive employee data.
+*   **Mitigation Strategy (0:35):**
+    *   **Perform a risk assessment:** Categorize risk by vendor and manage it.
+    *   **Use contracts for clear understanding:**
+        *   Ensures everyone understands expectations.
+        *   Can enforce a secure environment.
+        *   Sets penalties for breach of agreement.
+
+## 2. Penetration Testing (Pentest)
+*   **Definition (1:07):** A simulated attack on a system or network to find vulnerabilities and exploit them.
+    *   **Distinction from Vulnerability Scanning:** Vulnerability scanning *identifies* vulnerabilities, while pentesting *actively tries to exploit* them.
+*   **Compliance Mandate (1:21):** Often required by internal policies or legal agreements (contracts with third parties).
+    *   Example: Requiring regular pentests (e.g., quarterly, annually).
+*   **Third-party Involvement (1:37):** Often performed by specialized third-party companies.
+    *   Ensures unbiased assessment.
+    *   Experts are well-versed in the latest attack techniques.
+    *   Provides reports for both the organization and the vendor on security posture.
+
+## 3. Rules of Engagement (ROE)
+*   **Purpose (1:53):** A crucial document that defines the purpose, scope, and parameters of a penetration test.
+    *   Makes everyone aware of what will be tested and how.
+*   **Key Parameters (2:05):**
+    *   **Type of Testing:**
+        *   On-site physical breach (e.g., social engineering, physical access attempts).
+        *   Internal network test.
+        *   External network test (across the internet).
+    *   **Schedule:**
+        *   Specific dates and times.
+        *   During normal working hours, after hours, etc.
+*   **Specific Rules (2:36):**
+    *   **IP address ranges:** Which systems/networks are included.
+    *   **Emergency contacts:** Who to notify if something goes wrong.
+    *   **Handling sensitive information:** Procedures for data encountered during the test.
+    *   **In-scope/Out-of-scope devices/applications:** Clearly defines what can and cannot be touched.
+
+## 4. Right-to-Audit Clauses
+*   **Common Scenarios (3:07):** Essential when working with business partners, especially for:
+    *   **Data sharing:** When sensitive data is entrusted to a third party (e.g., payroll).
+    *   **Outsourcing:** When critical functions are handled by a third party (e.g., IT infrastructure, cloud providers).
+*   **Third-party Providers (3:24):** They might hold all your data or manage critical services like internet access.
+    *   The core question: *Are they secure?*
+*   **Contractual Requirement (3:36):** The "Right-to-Audit" clause should be included in the contract.
+    *   **Legal agreement:** Grants the option to perform a security audit at any time.
+    *   **Mutual understanding:** Everyone agrees to the terms and conditions.
+    *   **Proactive verification:** Ability to verify security *before* a breach occurs.
+
+## 5. Evidence of Internal Audits
+*   **Objective (4:09):** Evaluate the effectiveness of security controls.
+    *   Often involves having a third-party perform the audit for objectivity.
+*   **Compliance (4:21):** May be required for specific regulations or industry standards.
+    *   Good practice even without mandates.
+*   **Focus Areas (4:36):** Audits check for security controls and processes, including:
+    *   Access management (who has access to what).
+    *   Off-boarding procedures (revoking access for departing employees).
+    *   Password security (policies, storage, complexity).
+    *   VPN controls (access, configuration).
+    *   **Opportunity for Improvement:** Audits almost always reveal areas where security can be enhanced.
+*   **Frequency (5:13):** Should be performed at a reasonable frequency (e.g., regularly scheduled audits, not just a single one). Vendor relationships are long-term.
+
+## 6. Supply Chain Analysis
+*   **Definition (5:27):** The system involved in creating a product or service, from raw materials to the final customer.
+    *   Involves organizations, people, activities, and resources.
+*   **Security Concerns (5:36):** Security concerns exist at every step of the supply chain.
+*   **Steps in Analysis (5:51):**
+    *   Understand how a product/service flows from supplier to customer.
+    *   Evaluate coordination between different groups (internal and external).
+    *   Identify areas for improvement in security and efficiency.
+    *   Assess the IT systems supporting the operation.
+    *   Document business process changes.
+*   **Real-world Example: SolarWinds Attack (6:26):**
+    *   **Timeline:** Malware installed in software updates between March-June 2020.
+    *   **Announcement:** December 2020 by SolarWinds.
+    *   **Method:** Attackers breached SolarWinds, injected malware into their product's code, and deployed it with a *valid SolarWinds digital signature*.
+    *   **Impact:** At least 18,000 of 300,000 customers potentially impacted (including government agencies and major corporations).
+    *   **Lesson:** Highlighted the critical importance of supply chain security and vetting vendors.
+
+## 7. Independent Assessments
+*   **Purpose (7:21):** Bring in an outside firm (smart person or team) to evaluate security and provide recommendations.
+*   **Benefits of External View (7:29):**
+    *   Organizations often have a narrow focus on their internal processes.
+    *   Independent assessors provide a fresh perspective and broader scope.
+    *   Specialists in their field, performing assessments daily across many organizations.
+    *   They "seen it all" (8:00) and can provide options or identify risks you may not have considered.
+
+## 8. Vendor Selection Process
+*   **Due Diligence (8:07):** The process of checking a company out thoroughly before doing business with them.
+    *   **Investigation and Verification:** Investigate and verify information provided by the vendor.
+    *   **Key Checks:**
+        *   Financial status (stability).
+        *   Pending or past legal issues.
+        *   Background checks on key personnel.
+        *   Personnel interviews.
+*   **Conflict of Interest (8:39):** Situations where a personal interest could compromise professional judgment.
+    *   **Examples:**
+        *   A potential partner also does business with your largest competitor.
+        *   A third-party employs a relative of your CFO (Chief Financial Officer).
+        *   A third-party offers gifts if a contract is signed (potential for bribery/undue influence).
+    *   **Impact:** Conflicts of interest can prevent business relationships due to ethical or legal concerns.
+
+## 9. Vendor Monitoring
+*   **Ongoing Management (9:24):** The vendor relationship doesn't end when the contract is signed; continuous monitoring is essential.
+*   **Regular Reviews (9:39):**
+    *   Financial health checks.
+    *   IT security reviews.
+    *   Monitoring news articles and social media posts for any issues related to the vendor.
+*   **Tailored Monitoring (9:57):** Different vendors may require different indicators for monitoring (quantitative and qualitative analysis).
+*   **Assigned Responsibility (10:11):** Assign a specific person or team to be in charge of the vendor relationship and manage the monitoring process.
+
+## 10. Questionnaires
+*   **Role (10:28):** An important part of both due diligence (pre-contract) and ongoing vendor monitoring (post-contract).
+    *   Allows you to get answers directly from the vendor.
+*   **Security-related Questions (10:40):**
+    *   What is the vendor's due diligence process?
+    *   What plans are in place for disaster recovery?
+    *   What secure storage method is used for company data?
+    *   How is data protected?
+    *   And more specific questions about their security posture.
+*   **Updating Risk Analysis (11:16):** The results from questionnaires are used to update the vendor's risk analysis.
+    *   This risk analysis should be continually updated throughout the life of the vendor relationship.
+
+---
+
+## Key Takeaways for the Exam
+
+1.  **Third-party Risk is Ubiquitous:** Every organization relies on vendors, and this reliance inherently introduces risk due to shared data and outsourced functions.
+2.  **Proactive Risk Assessment is Crucial:** Don't assume vendors are secure. Actively assess their security posture before and during the engagement.
+3.  **Contracts are Your Legal Backstop:** Incorporate security requirements, risk assessments, and clauses like "Right-to-Audit" directly into your contracts to establish clear expectations and legal recourse.
+4.  **Penetration Testing (Pentesting):** Understand its definition (simulating attacks to exploit vulnerabilities) and its distinction from vulnerability scanning (identifying vulnerabilities). It's a critical tool for validating security.
+5.  **Rules of Engagement (ROE) are Essential for Pentesting:** This document defines the scope, type, schedule, and specific rules for a pentest, ensuring all parties are aligned and minimizing unintended consequences.
+6.  **Right-to-Audit Clauses Empower You:** These contractual clauses give your organization the legal right to inspect a vendor's security controls, providing assurance that your data and services are protected.
+7.  **Internal Audits and Third-Party Audits:** Regularly evaluate the effectiveness of security controls. Using third-party auditors provides an independent and expert perspective, often required for compliance.
+8.  **Supply Chain Security is a Major Concern:** Recognize that security vulnerabilities can originate anywhere in the complex supply chain. The SolarWinds attack is a prime example of a supply chain compromise.
+9.  **Independent Assessments Offer Fresh Perspectives:** External experts can identify security gaps or suggest improvements that internal teams might overlook due to their focused perspective.
+10. **Due Diligence and Conflict of Interest in Vendor Selection:** Thoroughly vet potential vendors (due diligence). Be vigilant for conflicts of interest that could compromise judgment or lead to unethical practices.
+11. **Vendor Monitoring is Ongoing, Not a One-Time Event:** The relationship with a vendor requires continuous oversight, including financial health checks, security reviews, and monitoring public information, adjusted for each vendor's specific risks.
+12. **Questionnaires are Practical Tools:** Use questionnaires during due diligence and ongoing monitoring to gather direct information from vendors about their security practices and plans. The responses help update your risk analysis.

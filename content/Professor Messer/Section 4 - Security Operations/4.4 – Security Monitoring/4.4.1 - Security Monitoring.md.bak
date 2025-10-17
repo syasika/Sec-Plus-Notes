@@ -1,0 +1,161 @@
+# Security Monitoring
+
+**Source:** Professor Messer - Security Monitoring
+**Link:** https://www.youtube.com/watch?v=np2WI_rM-Ok
+
+---
+
+### Introduction to Security Monitoring (0:02)
+
+*   **Attackers never sleep:**
+    *   Constant threat (24/7/365).
+    *   Need continuous monitoring of systems and services.
+*   **Monitor all entry points:**
+    *   Logins, publicly available services, data storage locations, remote access.
+    *   Verify all activity is legitimate.
+*   **React to security events:**
+    *   View account access, firewall rulebase changes, initiate additional scanning.
+    *   Real-time monitoring allows for immediate reaction.
+*   **Status dashboards:**
+    *   Consolidate monitoring information for an at-a-glance view of the security posture.
+
+---
+
+### Monitoring Computing Resources (0:49)
+
+*   **Systems:**
+    *   **Authentication:**
+        *   Monitor logins, especially from unusual or "strange places" (e.g., foreign countries where no employees are located).
+        *   Indicates potential unauthorized access attempts.
+    *   **Server Monitoring:**
+        *   Service activity: track type and volume of activity.
+        *   Backups: verify completion status.
+        *   Software versions: identify outdated software that needs patching.
+*   **Applications:**
+    *   **Availability:**
+        *   Monitor uptime and response times to ensure applications are functioning correctly.
+    *   **Data Transfers:**
+        *   Track increases or decreases in data transfer rates.
+        *   Unusual spikes can indicate data exfiltration attempts.
+    *   **Security Notifications:**
+        *   Maintain open communication with developers/manufacturers for security updates and vulnerability alerts.
+*   **Infrastructure:**
+    *   **Remote Access Systems:**
+        *   Monitor VPN connections and other remote access points.
+        *   Identify who is connecting (employees, vendors, guests) and from where.
+    *   **Firewall and IPS Reports:**
+        *   Analyze reports from firewalls and Intrusion Prevention Systems for increases in attack volume or changes in attack types.
+        *   Provides early warning of targeted attacks.
+
+---
+
+### Log Aggregation (2:30)
+
+*   **SIEM or SEM (Security Information and Event Manager):**
+    *   **Purpose:** Consolidate diverse logs from many different systems into a central database.
+    *   **Sources:** Servers, firewalls, VPN concentrators, SANs (Storage Area Networks), cloud services, switches, routers, etc.
+    *   **Benefit 1: Centralized Reporting:**
+        *   All information is in one place, making it easy to generate reports from a single engine.
+    *   **Benefit 2: Correlation between diverse systems:**
+        *   Allows comparison and correlation of data that was previously disparate.
+        *   Examples:
+            *   View authentication to VPN concentrator + access activity post-login.
+            *   Track application access paths.
+            *   Measure and report on data transfers for anomalies.
+
+---
+
+### Scanning (4:00)
+
+*   **A constantly changing threat landscape:**
+    *   New vulnerabilities are discovered daily.
+    *   Organizations use many different business applications and services.
+    *   Systems and people are always moving (laptops, mobile devices).
+    *   Makes it challenging to track vulnerabilities.
+*   **Actively check systems and devices:**
+    *   Scan for:
+        *   Operating system types and versions.
+        *   Device driver versions.
+        *   Installed applications.
+        *   Potential anomalies.
+*   **Gather the raw details:**
+    *   Scanning creates a valuable database of detailed information.
+    *   This data can be used to generate comprehensive reports.
+
+---
+
+### Reporting (5:18)
+
+*   **Analyze the collected data to create "actionable" reports:**
+    *   Reports should provide insights that guide next steps.
+*   **Status Information:**
+    *   Report on the number of devices that are up-to-date and in compliance with patches.
+    *   Identify devices running older, unsupported operating systems.
+*   **Determine best next steps:**
+    *   If a new vulnerability is announced, quickly generate reports to identify how many systems are vulnerable.
+*   **Ad hoc information summaries:**
+    *   Prepare for the unknown by performing "what-if" analyses.
+    *   Example: How many systems will be vulnerable when a specific OS reaches end-of-life in 6 months?
+
+---
+
+### Archiving (6:50)
+
+*   **Identifying and containing a breach:**
+    *   IBM security report (2022) indicates it takes an average of **9 months** for a company to identify and contain a breach.
+    *   During this period, attackers can move freely within the network.
+*   **Access to data is critical:**
+    *   Archive security data over an extended period (months or years).
+    *   This historical data is crucial for forensic analysis after a breach is discovered.
+*   **May have a mandate:**
+    *   State or federal laws, or organizational requirements, may mandate data archiving for compliance or legal reasons.
+
+---
+
+### Alerting (7:53)
+
+*   **Real-time notification of security events:**
+    *   Immediate alerts for unusual or suspicious activity.
+    *   Examples:
+        *   Sudden increase in authentication errors (indicating brute-force or spraying attacks).
+        *   Large file transfers (indicating data exfiltration).
+*   **Actionable data:**
+    *   Alerts should provide enough information for immediate action.
+    *   Keeps the right people informed.
+    *   Enables quick response and status updates.
+*   **Notification methods:**
+    *   SMS/text messages (for immediate, brief alerts).
+    *   Email (for more detailed information).
+    *   Security console / SOC (Security Operations Center) dashboards and dedicated alerts.
+
+---
+
+### Alert Response and Remediation (9:10)
+
+*   **Quarantine:**
+    *   A foundational security response.
+    *   Isolate a compromised or suspicious system from the rest of the network.
+    *   Prevents a potential security issue (e.g., malware, attacker lateral movement) from spreading.
+*   **Alert Tuning:**
+    *   An ongoing balancing act to ensure alerts are effective.
+    *   **Prevent false positives:** Alerts for legitimate activity that is mistakenly flagged as a threat. Too many false positives lead to alert fatigue.
+    *   **Prevent false negatives:** Failure to generate an alert for an actual security event. This means a threat is missed.
+    *   An alert should be accurate. This is an ongoing process, and the tuning improves over time as administrators refine the rules and thresholds.
+
+---
+
+## Takeaways for an Exam
+
+1.  **Why Security Monitoring is Crucial:** Attackers operate 24/7/365, so constant vigilance is essential. Monitoring helps detect and react to threats across all entry points and critical resources.
+2.  **Key Areas for Monitoring:**
+    *   **Systems:** Authentication (especially unusual logins), server activity (services, backups, software versions).
+    *   **Applications:** Availability (uptime, response times), data transfers (anomalies indicating exfiltration), security notifications from vendors.
+    *   **Infrastructure:** Remote access (who, when, where), firewall/IPS reports (attack trends).
+3.  **Role of SIEM/SEM (Log Aggregation):** Understand its primary function: centralizing diverse logs for unified analysis. Key benefits include centralized reporting and the ability to correlate events across different systems, which is crucial for identifying complex attacks.
+4.  **Importance of Scanning:** Recognize that the threat landscape is dynamic. Scanning actively checks systems for vulnerabilities (OS, drivers, applications, anomalies) to build a detailed inventory of potential weaknesses.
+5.  **Actionable Reporting:** Reports are not just data dumps; they must provide clear insights for decision-making. Focus on status (compliance, outdated systems) and "what-if" scenarios (impact of new vulnerabilities or end-of-life software).
+6.  **Archiving for Forensics and Compliance:** Long-term data retention (as breaches can go undetected for months, e.g., 9 months average) is vital for post-incident investigation and meeting regulatory mandates.
+7.  **Alerting for Real-time Response:** Alerts provide immediate notification of security events (e.g., authentication errors, large data transfers). The goal is *actionable data* to enable quick response and keep relevant personnel informed.
+8.  **Alert Tuning (False Positives vs. False Negatives):** This is a critical challenge.
+    *   **Quarantine** is a common immediate response.
+    *   **Tuning** involves balancing the sensitivity of alerts to minimize false positives (which cause alert fatigue) and false negatives (which miss actual threats). This is an ongoing process that improves accuracy over time.

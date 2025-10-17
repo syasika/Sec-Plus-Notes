@@ -1,0 +1,149 @@
+# Infrastructure Considerations
+
+## Video: Infrastructure Considerations - Professor Messer
+**Source:** https://www.youtube.com/watch?v=Ap3Z_0ZdqpQ
+
+## 1. Availability (0:02)
+*   **Definition:** The ability of a system to be operational and accessible when needed.
+    *   Enables users to access data, complete transactions, and use application capabilities.
+*   **Foundation of IT Security:** Without availability, other security measures (confidentiality, integrity) are irrelevant.
+*   **Balancing Act with Security:** Systems must be available, but *only* to the **right people**.
+*   **Investment:** Significant time and money are spent on ensuring availability.
+    *   **Monitoring:** Complex systems to track uptime and performance.
+    *   **Redundant systems:** Duplicating components to prevent single points of failure.
+*   **Important Metric:** Often evaluated as **system uptime** (e.g., 99% uptime, "five nines" 99.999%).
+
+## 2. Resilience (1:02)
+*   **Definition:** The ability of a system to maintain [[Availability]] and recover quickly after an unexpected event or outage.
+*   **Key Questions:**
+    *   Can you maintain availability during an event?
+    *   Can you recover? How quickly?
+*   **Recovery is based on many variables:**
+    *   **Root cause:** Understanding why the outage occurred.
+    *   **Replacement hardware installation:** Time to acquire and install new hardware.
+    *   **Software patch availability:** If a software bug caused it, is a fix available?
+    *   **Redundant systems:** How quickly can failover occur or backups be restored?
+*   **Commonly referenced as MTTR (Mean Time to Repair):**
+    *   Describes the average time it takes to repair a failed system or component.
+    *   Crucial for minimizing downtime and associated costs.
+
+## 3. Cost (2:03)
+*   **Everything ultimately comes down to cost.**
+*   **Initial Installation:**
+    *   Varies significantly across different platforms and technologies.
+*   **Ongoing Maintenance:**
+    *   Annual recurring costs for software licenses, hardware support, and personnel.
+*   **Replacement or Repair Costs:**
+    *   Costs associated with fixing or replacing components that fail.
+    *   May require purchasing more than one spare.
+*   **Tax Implications:**
+    *   How costs are categorized (e.g., operating expense vs. capital expense) affects taxes.
+    *   Depreciation of assets also plays a role.
+
+## 4. Responsiveness (3:12)
+*   **Definition:** How quickly a system provides a response to a user's request.
+*   **Request Information - Get a Response:** The speed at which this happens.
+*   **Especially Important for Interactive Applications:**
+    *   Humans are sensitive to delays; slow responses degrade user experience.
+*   **Speed is an important metric:**
+    *   All parts of the application contribute to overall responsiveness.
+    *   There's always a weakest link in the chain that can cause delays.
+    *   Can be challenging to quantify due to complex, multi-step transactions.
+
+## 5. Scalability (4:06)
+*   **Definition:** How quickly and easily an infrastructure can increase or decrease its capacity to handle varying workloads.
+    *   This might happen many times a day (e.g., peak usage periods).
+*   **Elasticity:** The ability of a system to expand and contract resources dynamically based on demand.
+*   **Resource Challenge:** Building an application to be its largest possible size is expensive.
+    *   Organizations often build for current load and scale as needed.
+*   **Security Monitoring:** Needs to scale with the system.
+    *   Security tools must be able to monitor new resources as they are added (and removed) during scaling.
+
+## 6. Ease of Deployment (5:26)
+*   **Definition:** How straightforward and efficient it is to set up and configure an application or service.
+*   **Applications have many moving parts:**
+    *   Web server, database, caching server, firewall, load balancers, etc.
+*   **Deployment can be an involved process:**
+    *   Requires managing hardware resources, cloud budgets, and adherence to change control procedures.
+*   **Can be very simple with Orchestration / Automation:**
+    *   Cloud-based deployments often leverage automation to build entire application instances on demand.
+*   **Important to consider during the product engineering phase:**
+    *   One missed detail can cause significant deployment issues and delays.
+
+## 7. Risk Transference (6:58)
+*   **Definition:** A method to minimize risk by transferring it to a third-party.
+*   **Cybersecurity Insurance:** A common way to transfer risk in IT.
+    *   **Covers attacks and downtime:** Provides financial coverage for losses incurred due to cyber incidents.
+    *   **Popular with the rise in ransomware:** Helps recover costs from ransomware attacks (though it doesn't prevent them).
+    *   **Recovers internal losses:** Covers financial losses from outages and business downtime.
+    *   **Protects against legal issues from customers:** Helps limit the costs associated with legal proceedings following a security breach or service interruption that impacts customers.
+
+## 8. Ease of Recovery (8:07)
+*   **Definition:** How easily and quickly a system or data can be restored to a functional state after a failure or disruption.
+*   **"Time is money":** The longer recovery takes, the more it costs the organization.
+*   **Example: Malware Infection:**
+    *   Reloading the operating system from original media: ~1 hour.
+    *   Reloading from a corporate image (pre-configured): ~10 minutes.
+*   **Important Design Criteria:** Plan for efficient recovery processes from the outset.
+    *   Faster recovery means less financial impact and better [[Availability]].
+
+## 9. Patch Availability (9:17)
+*   **Definition:** The readiness and accessibility of software updates, bug fixes, and security patches.
+*   **Software isn't usually static:** Requires continuous updates for bug fixes, security vulnerabilities, and feature enhancements.
+*   **Often the first task after installation:** Ensure the latest version is running to mitigate known vulnerabilities.
+*   **Most companies have regular updates:**
+    *   Example: Microsoft's monthly patch schedule.
+    *   Organizations need to test patches before deploying them to production.
+*   **Some companies rarely patch:**
+    *   This is a significant security concern, leaving systems vulnerable to exploits.
+    *   Increases the risk of successful attacks.
+
+## 10. Inability to Patch (10:37)
+*   **What if patching wasn't an option?** This happens more often than you might think.
+*   **Embedded Systems:** Often not designed for regular updates.
+    *   Examples: HVAC controls, time clocks, industrial control systems.
+    *   Lack internet access or easy update mechanisms.
+*   **"Not designed for end-user updates" is short-sighted:**
+    *   Especially these days, attackers will find and exploit vulnerabilities in any technology.
+*   **May need additional security controls:**
+    *   If patching isn't possible, implement other layers of security *around* the device (e.g., a firewall for a time clock).
+
+## 11. Power (11:38)
+*   **A Foundational Element:** Modern technology cannot function without electricity.
+    *   Requires extensive engineering, especially for critical systems.
+*   **Overall Power Requirements:**
+    *   Vary greatly depending on the environment (e.g., a data center vs. an office building).
+*   **Primary Power:**
+    *   Usually supplied by one or more utility providers.
+*   **Backup Services:** Essential for maintaining [[Availability]] during power outages.
+    *   **UPS (Uninterruptible Power Supply):** Provides immediate, short-term power.
+    *   **Generators:** Provide longer-term power during extended outages.
+
+## 12. Compute (12:53)
+*   **Definition:** The processing power and resources (CPU, RAM) an application uses to perform its heavy lifting.
+*   **More than just a single CPU:** Modern applications often require distributed computing.
+*   **The Compute Engine:**
+    *   Refers to the resources dedicated to processing data and running application logic.
+    *   More options are available in the cloud (e.g., various instance types, serverless functions).
+*   **May be limited to a single processor:**
+    *   Easier to develop and manage, but less scalable.
+*   **Use multiple CPUs across multiple clouds:**
+    *   Offers enhanced [[Scalability]] and [[Resilience]].
+    *   Introduces additional complexity in management and orchestration.
+
+---
+
+# Exam Takeaways
+
+1.  **CIA Triad and Availability:** Understand that availability is a cornerstone of IT security. While confidentiality and integrity are important, a system that isn't available isn't useful.
+2.  **Availability Metrics:** Be able to define and understand the importance of **system uptime** (often expressed as percentages like "five nines").
+3.  **Resilience and Recovery:** Differentiate between simply being available and being resilient. Know that **MTTR (Mean Time to Repair)** is a key metric for resilience, and that recovery time depends on factors like root cause, hardware, software, and redundant systems.
+4.  **Cost is Comprehensive:** Remember that "cost" isn't just the purchase price. It includes initial installation, ongoing maintenance, potential replacement/repair costs, and tax implications.
+5.  **Responsiveness & User Experience:** Understand why responsiveness is crucial, especially for interactive applications, and how human sensitivity to delays makes it a critical performance metric.
+6.  **Scalability & Elasticity:** Grasp the concepts of scalability and elasticity – the ability to quickly and easily adjust system capacity. Know that cloud environments excel in this area, often through automation. Recognize the cost implication of over-provisioning for maximum load.
+7.  **Ease of Deployment & Automation:** Understand that modern applications have many moving parts. Ease of deployment is vital, and **orchestration/automation** (especially in cloud) can significantly simplify complex setups. Emphasize the importance of planning during the engineering phase.
+8.  **Risk Transference & Cyber Insurance:** Recognize **cybersecurity insurance** as a method of risk transference. Understand what it typically covers (attacks, downtime, legal costs) and its growing importance, particularly with threats like ransomware.
+9.  **Recovery Speed Matters:** "Time is money" is critical in recovery. Faster recovery methods (like corporate images vs. original media) are more efficient and less costly. Design for ease of recovery.
+10. **Patching is Non-Negotiable (Mostly):** Software is dynamic and requires constant patching for security and stability. Understand that *not* patching is a major security risk.
+11. **Inability to Patch and Mitigations:** Be aware that some systems (especially embedded systems like HVAC controls) cannot be easily patched. In these cases, know that **additional security controls** (e.g., network segmentation, firewalls) around the device become even more critical.
+12. **Power & Compute as Foundational:** Recognize power and compute resources as fundamental infrastructure elements. Understand the need for robust power infrastructure (primary providers, UPS, generators) and how compute resources (CPUs, compute engines) drive application performance and scalability.
